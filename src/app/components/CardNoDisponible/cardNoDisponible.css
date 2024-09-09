@@ -1,0 +1,6 @@
+.contenedor-card-no-disponible{
+    width: 250px;
+    height: 270px;
+    display: flex;
+    align-items: center;
+}

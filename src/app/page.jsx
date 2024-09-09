@@ -1,11 +1,17 @@
 import React from "react";
+import CardNoDisponible from "./components/CardNoDisponible";
+import CardSimple from "./components/CardSimple";
 
 function HomePage() {
     return (
-        <>
-            <h1 className="text-1xl font-bold underline">Hello world!</h1>
-            <h1 className="text-3xl font-bold underline">Hello world!</h1>
-        </>
+        <div className="flex items-center justify-center flex-wrap gap-4 p-4">
+    
+            <CardNoDisponible carro={"Ferrari S12"} anio={2022} precio={1000}/>
+            <CardNoDisponible carro={"Ferrari pura sangre"} anio={2015} precio={750}/>
+            <CardSimple carro={"Volkswaguen Jetta"} anio={2010} precio={200}/>
+            <CardSimple carro={"Toyota Tacoma"} anio={2013} precio={150}/>
+            <CardSimple carro={"Honda type R"} anio={2020} precio={350}/>
+        </div>
     );
 }
 
