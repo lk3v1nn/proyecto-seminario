@@ -1,6 +1,6 @@
 import React from "react";
-import CardNoDisponible from "./components/CardNoDisponible";
-import CardSimple from "./components/CardSimple";
+import CardNoDisponible from "../Components/CardNoDisponible";
+import CardSimple from "../Components/CardSimple";
 
 function HomePage() {
     return (

@@ -1,8 +1,20 @@
 import { NextResponse } from "next/server";
 import { conn } from "@/libs/mysql";
 
-export function PUT() {
-    return NextResponse.json({ message: "Actualizando carro" });
+export async function PUT(request, {params}) {
+    try {
+        const data = await request.json()
+        const queryResponse = await conn.query("UPDATE CARRO SET  ? WHERE CodigoCarro = ?", [data, params.id]);
+        console.log(queryResponse);
+        if (queryResponse.affectedRows === 0) {
+            return NextResponse.json({message: 'No se encontraron resultado'}, {status: 404});
+        }
+        const carroActualizado = await conn.query("select * from CARRO WHERE CodigoCarro = ?", [params.id]);
+        return NextResponse.json(carroActualizado);
+    } catch (error) {
+        return NextResponse.json({ message: error.message }, { status: 500 });
+    }
+
 }
 
 export async function DELETE(request, {params}) {
