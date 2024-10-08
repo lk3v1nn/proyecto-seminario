@@ -1,28 +1,50 @@
 "use client";
 import "./formCrearCarro.css";
+import axios from "axios";
 import { Input } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
-// import {MailIcon} from './MailIcon';
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function FormCrearCarro() {
     const [carro, setCarro] = useState({
-        nombre: "",
-        marca: "",
-        modelo: "",
-        anio: "",
-        precio: "",
-        descripcion: "",
+        Nombre: "",
+        Marca: "",
+        Modelo: "",
+        Anio: "",
+        PrecioCliente: "",
+        Descripcion: "",
+        PrecioEstimado: 0,
+        Propietario: 0,
+        Disponible: 0
     });
+    const router = useRouter();
+    
     const handleChange = (e) => {
-        console.log(e.target);
+        setCarro({ ...carro, [e.target.name]: e.target.value });
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const carroActualizado = { ...carro, PrecioEstimado: 0, Propietario: 1, Disponible: 1 }
+        setCarro(carroActualizado);
+        guardarCarro(carroActualizado)
+    }
+
+    const guardarCarro = async (carroActualizado) => {
+        const res = await axios.post('/API/cars', carroActualizado);
+        res.status === 200 && router.push('/MisCarros');
+    }
+
     return (
-        <form className="Contenedor-FormCrearCarro">
+        <form className="Contenedor-FormCrearCarro" onSubmit={handleSubmit} >
             <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
                 <Input
                     label="Nombre"
+                    required
+                    autoFocus
+                    name="Nombre"
                     type="text"
                     isClearable
                     radius="lg"
@@ -54,6 +76,8 @@ export default function FormCrearCarro() {
             <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
                 <Input
                     label="Marca"
+                    required
+                    name="Marca"
                     type="text"
                     isClearable
                     radius="lg"
@@ -83,6 +107,8 @@ export default function FormCrearCarro() {
                 />
                 <Input
                     label="Modelo/Linea"
+                    required
+                    name="Modelo"
                     type="text"
                     isClearable
                     radius="lg"
@@ -114,6 +140,8 @@ export default function FormCrearCarro() {
             <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
                 <Input
                     label="Año"
+                    required
+                    name="Anio"
                     type="number"
                     isClearable
                     radius="lg"
@@ -143,6 +171,8 @@ export default function FormCrearCarro() {
                 />
                 <Input
                     label="Precio"
+                    required
+                    name="PrecioCliente"
                     type="number"
                     isClearable
                     radius="lg"
@@ -181,6 +211,8 @@ export default function FormCrearCarro() {
             <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
                 <Textarea
                     label="Descripcion"
+                    required
+                    name="Descripcion"
                     placeholder="Ingresa mas detalles del vehiculo"
                     classNames={{
                         label: "text-black/50 dark:text-white/90",
@@ -206,7 +238,7 @@ export default function FormCrearCarro() {
                     onChange={handleChange}
                 />
             </div>
-            <Button color="primary">Publicar</Button>
+            <Button type="submit" color="primary">Publicar</Button>
         </form>
     );
 }

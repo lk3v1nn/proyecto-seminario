@@ -1,0 +1,26 @@
+.contenedor-card-simple{
+    width: 250px;
+    cursor: pointer;
+
+}
+
+.bg-content1{
+    transition: transform 0.3s ease-in-out;
+}
+.body {
+    transition: transform 0.4s ease-in-out, border-radius 0.4s ease-in-out, border-left 0.4s ease-in-out, border-right 0.4s ease-in-out, padding 0.4s ease-in-out;
+}
+
+.contenedor-card-simple:hover .body {
+    transform: scale(1.2) translateY(10px);
+    border-radius: 0.75rem;
+    border-left: 10px solid white;
+    border-right: 10px solid white;
+    padding: 5px 15px;
+}
+.contenedor-card-simple:hover .bg-content1{
+    transform: scale(1.12);
+    border-radius: 0.75rem;
+    z-index: 50;
+    box-shadow: 1px 1px 10px 4px rgba(0, 0, 0, 0.468);
+}

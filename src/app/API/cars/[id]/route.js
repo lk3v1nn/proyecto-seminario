@@ -5,7 +5,6 @@ export async function PUT(request, {params}) {
     try {
         const data = await request.json()
         const queryResponse = await conn.query("UPDATE CARRO SET  ? WHERE CodigoCarro = ?", [data, params.id]);
-        console.log(queryResponse);
         if (queryResponse.affectedRows === 0) {
             return NextResponse.json({message: 'No se encontraron resultado'}, {status: 404});
         }

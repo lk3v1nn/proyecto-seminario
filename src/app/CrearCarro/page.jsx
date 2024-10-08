@@ -1,5 +1,5 @@
 import './crearCarro.css'
-import FormCrearCarro from "../../Components/FormCrearCarro";
+import FormCrearCarro from "../../Components/carro/FormCrearCarro";
 
 export default function CrearCarro() {
     return (

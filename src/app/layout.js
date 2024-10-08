@@ -20,8 +20,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="es">
-            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <html lang="es" className={`min-h-screen bg-gradient-to-b from-blue-300 to-blue-900`}>
+            <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-gradient-to-b from-blue-300 to-blue-900`}>
                 <h1>NavBar</h1>
                 <div className="h-[calc(100vh-5rem)]">
                     <Providers>{children}</Providers>
