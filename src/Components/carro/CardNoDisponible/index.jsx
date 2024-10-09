@@ -5,17 +5,17 @@ import "./cardNoDisponible.css";
 export default function CardNoDisponible({dataCarro, esPropio}) {
     return (
         <div className="contenedor-card-no-disponible">
-            <Card isFooterBlurred radius="lg" className="border-none py-2">
+            <Card isFooterBlurred radius="lg" className="border-none py-2 bg-slate-400 text-white" >
                 <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                     <p className="text-tiny uppercase font-bold">{dataCarro.Marca} {dataCarro.Modelo}</p>
-                    <small className="text-default-500">{dataCarro.Anio}</small>
+                    <small className="text-default-500 text-white">{dataCarro.Anio}</small>
                     <h4 className="font-bold text-large">Q {dataCarro.PrecioCliente} por dia</h4>
                 </CardHeader>
                 <CardBody className="overflow-visible py-2">
                     <Image
                         alt="Card background"
                         className="object-cover rounded-xl"
-                        src="https://nextui.org/images/hero-card-complete.jpeg"
+                        src="https://images.unsplash.com/flagged/photo-1553505192-acca7d4509be?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3"
                         width={270}
                     />
                 </CardBody>
