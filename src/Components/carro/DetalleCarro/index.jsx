@@ -1,12 +1,14 @@
 import {Card, CardHeader, CardBody, CardFooter, Image, Button} from "@nextui-org/react";
 import OpcionesBoton from "../OpcionesBoton";
 import Comentario from "../Comentario";
+import VistaPreviaImagenes from "../VistaPreviaImagenes";
 
 export default function DetalleCarro() {
 
   return (
     <>
-      <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-1 px-8">
+        <VistaPreviaImagenes/>
+        <div className="max-w-[900px] gap-2 grid grid-cols-12 grid-rows-1 px-8">
       
       <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
         <CardHeader className="absolute z-10 top-1 flex-col items-start">
