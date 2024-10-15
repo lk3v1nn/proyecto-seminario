@@ -67,7 +67,7 @@ export default function VistaPreviaImagenes() {
                         alt=""
                     />
                     <figcaption>
-                        Daytona Beach <small>United States</small>
+                        Honda fit RR (no gay) <small> del mencho</small>
                     </figcaption>
                 </figure>
                 <figure>
@@ -76,16 +76,16 @@ export default function VistaPreviaImagenes() {
                         alt=""
                     />
                     <figcaption>
-                        <small>Descripcion xd</small>
+                        Honda fit RR (no gay) <small> del mencho</small>
                     </figcaption>
                 </figure>
                 <figure>
                     <img
-                        src="https://img.freepik.com/fotos-premium/concepto-camion-monstruo-jeep-todoterreno-fondo-pantalla-neon-bosque_758367-10060.jpg"
+                        src="https://i.ytimg.com/vi/-Jupg-ZAF2U/maxresdefault.jpg"
                         alt=""
                     />
                     <figcaption>
-                        Териберка, gorod Severomorsk <small>Russia</small>
+                        Honda fit RR (no gay) <small> del mencho</small>
                     </figcaption>
                 </figure>
                 <figure>
@@ -94,7 +94,7 @@ export default function VistaPreviaImagenes() {
                         alt=""
                     />
                     <figcaption>
-                        Bad Pyrmont <small>Deutschland</small>
+                        Honda fit RR (no gay) <small> del mencho</small>
                     </figcaption>
                 </figure>
                 <figure>
@@ -103,7 +103,7 @@ export default function VistaPreviaImagenes() {
                         alt=""
                     />
                     <figcaption>
-                        Yellowstone National Park <small>United States</small>
+                        Honda fit RR (no gay) <small> del mencho</small>
                     </figcaption>
                 </figure>
 
