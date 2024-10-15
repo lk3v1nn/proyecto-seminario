@@ -1,0 +1,4 @@
+.contendor-DetalleCarro{
+    display: grid;
+    grid-template-columns: 80% 0 20%;
+}

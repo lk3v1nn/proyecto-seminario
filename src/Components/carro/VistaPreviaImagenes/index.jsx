@@ -1,5 +1,5 @@
 "use client";
-import "./estilos.css";
+import "./style.css";
 import { useEffect } from "react";
 import $ from "jquery";
 

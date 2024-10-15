@@ -4,16 +4,11 @@ img {
 }
 
 .gallery {
-    position: relative;
-    z-index: 2;
-    padding: 20px;
-    display: flex;
-    flex-flow: row wrap;
-    transition: all .5s ease-in-out;
-    transform: translateZ(0);
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
 
   &.pop {
     filter: blur(2px);

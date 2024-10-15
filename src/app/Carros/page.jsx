@@ -1,7 +1,7 @@
 import React from "react";
 import CardNoDisponible from "../../Components/carro/CardNoDisponible";
 import CardSimple from "../../Components/carro/CardSimple";
-import Banner from "@/Components/carro/Banner";
+import Banner from "@/Components/carro/BannerCategorias";
 import { conn } from "@/libs/mysql";
 
 async function cargarCarros() {
