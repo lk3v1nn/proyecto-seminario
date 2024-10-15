@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "./providers";
+import NavBar from "@/Components/NavBar"
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -20,9 +21,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="es" className={`dark min-h-screen bg-gradient-to-b from-blue-300 to-blue-900`}>
-            <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-gradient-to-b from-blue-300 to-blue-900`}>
-                <h1>NavBar</h1>
+        <html lang="es" className={`Ligth`}>
+            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+                <NavBar/>
                 <div className="h-[calc(100vh-5rem)]">
                     <Providers>{children}</Providers>
                 </div>

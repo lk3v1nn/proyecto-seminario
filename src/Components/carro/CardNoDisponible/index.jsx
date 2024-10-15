@@ -16,7 +16,7 @@ export default function CardNoDisponible({dataCarro, esPropio}) {
                         alt="Card background"
                         className="object-cover rounded-xl"
                         src="https://images.unsplash.com/flagged/photo-1553505192-acca7d4509be?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3"
-                        width={270}
+                        width={320}
                     />
                 </CardBody>
                 <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">

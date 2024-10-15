@@ -1,4 +1,4 @@
-import Example from '@/Components/Prueba'
+import Example from '@/Components/Prueba';
 
 export default function Prueba () {
   return (
