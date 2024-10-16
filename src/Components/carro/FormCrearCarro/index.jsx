@@ -19,7 +19,7 @@ export default function FormCrearCarro() {
         Propietario: 0,
         Disponible: 0
     });
-    const [imagenes, setImagenes] = useState([]);
+    const [imagenes, setImagenes] = useState();
     const router = useRouter();
     
     const handleChange = (e) => {
@@ -34,8 +34,30 @@ export default function FormCrearCarro() {
     }
 
     const guardarCarro = async (carroActualizado) => {
-        const res = await axios.post('/API/cars', carroActualizado);
-        res.status === 200 && router.push('/MisCarros');
+        const formData = new FormData();
+        formData.append('Nombre', carroActualizado.Nombre);
+        formData.append('Marca', carroActualizado.Marca);
+        formData.append('Modelo', carroActualizado.Modelo);
+        formData.append('Anio', carroActualizado.Anio);
+        formData.append('PrecioCliente', carroActualizado.PrecioCliente);
+        formData.append('Descripcion', carroActualizado.Descripcion);
+        formData.append('PrecioEstimado', carroActualizado.PrecioEstimado);
+        formData.append('Propietario', carroActualizado.Propietario);
+        formData.append('Disponible', carroActualizado.Disponible);
+        for (let i = 0; i < imagenes.length; i++) {
+            formData.append('Imagenes', imagenes[i]);
+        }
+
+        const res = await axios.post('/API/cars', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        if (res.status === 200 ) 
+            router.push('/MisCarros');
+         else
+            console.log(res.data);
     }
 
     return (
@@ -275,7 +297,7 @@ export default function FormCrearCarro() {
                 </div>
                 <Button type="submit" color="primary">Publicar</Button>
             </form>
-            {imagenes.length > 0 && 
+            {imagenes?.length > 0 && 
                 <div className="Imagenes-FormCrearCarro">
                     <img src={URL.createObjectURL(imagenes[0])} alt="Carro" className="w-1/2 mx-auto" />
                 </div>

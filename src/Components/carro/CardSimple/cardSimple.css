@@ -17,7 +17,7 @@
     border-radius: 0.75rem;
     border-left: 10px solid white;
     border-right: 10px solid white;
-    padding: 5px 15px;
+    padding: 8px 22px;
 }
 .contenedor-card-simple:hover .bg-content1{
     transform: scale(1.12);
