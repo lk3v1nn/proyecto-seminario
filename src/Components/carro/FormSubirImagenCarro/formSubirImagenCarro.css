@@ -1,0 +1,24 @@
+.Contenedor-FormSubirImagenCarro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Contenedor-FormSubirImagenCarro form{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 500px;
+    padding: 10px;
+}
+
+.Imagenes-FormSubirImagenCarro{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.Imagenes-FormSubirImagenCarro img{
+    width: 300px;
+    border-radius: 14px;
+}

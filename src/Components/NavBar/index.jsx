@@ -28,7 +28,7 @@ export default function NavBar() {
             </Link>
           </NavbarItem>
           <NavbarItem isActive>
-            <Link href="/Reservaciones" aria-current="page" color="secondary">
+            <Link href="/Reservaciones" aria-current="page" >
               Reservaciones
             </Link>
           </NavbarItem>
@@ -60,7 +60,7 @@ export default function NavBar() {
             <Avatar
               isBordered
               className="cursor-pointer transition-transform"
-              color="secondary"
+              color="primary"
               name="Jason Hughes"
               size="sm"
               src="https://i.pravatar.cc/150?u=a042581f4e29026704d"

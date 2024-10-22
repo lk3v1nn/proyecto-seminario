@@ -14,7 +14,7 @@ CREATE TABLE `CARRO` (
 );
 
 
-CREATE TABLE `CLIENTE` (
+CREATE TABLE `USUARIO` (
 	`CodigoUsuario` INTEGER NOT NULL UNIQUE,
 	`Nombre` VARCHAR(255) NOT NULL,
 	`Apellido` VARCHAR(255) NOT NULL,
@@ -23,6 +23,8 @@ CREATE TABLE `CLIENTE` (
 	`CodigoTipoUsuario` INTEGER NOT NULL,
 	PRIMARY KEY(`CodigoUsuario`, `CodigoTipoUsuario`)
 );
+ALTER TABLE `USUARIO`
+ADD COLUMN `Imagen` VARCHAR(755);
 
 
 CREATE TABLE `TIPOUSUARIO` (
@@ -51,6 +53,14 @@ CREATE TABLE `SOLICITUDRENTA` (
 	PRIMARY KEY(`CodigoSolicitudrenta`)
 );
 
+
+CREATE TABLE `ImagenCarro` (
+    `CodigoImagenCarro` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+    `url` VARCHAR(255) NOT NULL,
+    `CodigoCarro` INTEGER NOT NULL,
+	`IdImagen` VARCHAR(255) NOT NULL,
+    PRIMARY KEY(`CodigoImagenCarro`)
+);
 
 ALTER TABLE `CARRO`
 ADD FOREIGN KEY(`Propietario`) REFERENCES `CLIENTE`(`CodigoUsuario`)
