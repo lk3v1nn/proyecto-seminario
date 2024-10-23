@@ -9,14 +9,15 @@ img {
   gap: 10px;
   flex-wrap: wrap;
   align-content: flex-start;
-
+  padding: 25px;
+  
   &.pop {
     filter: blur(2px);
   }
 
   figure {
-    width: 350px;
-    height: 250px;
+    width: 400px;
+    height: 280px;
     overflow: hidden;
     cursor: pointer;
     border-radius: 14px;

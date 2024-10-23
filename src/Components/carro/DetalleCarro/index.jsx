@@ -6,6 +6,7 @@ import VistaPreviaImagenes from "../VistaPreviaImagenes";
 import BannerRecomendaciones from "../BanerRecomendaciones";
 import CardUsuario from "../CardUsuario";
 import DatosCarro from "../DatosCarro";
+import { Button } from "@nextui-org/react";
 
 export default function DetalleCarro({ codigoCarro }) {
     const [imagenes, setImagenes] = useState([]);
@@ -37,7 +38,13 @@ export default function DetalleCarro({ codigoCarro }) {
         <>
             <div className="contendor-DetalleCarro">
                 <div className="contenido">
-                    <DatosCarro carro={carro}/>
+                    <div className="flex gap-8">
+                        <DatosCarro carro={carro} />
+                        <div className="flex flex-col justify-evenly">
+                            <Button color="primary" size="md" variant="flat">Contactar</Button>
+                            <Button color="primary" size="sm" variant="bordered">Guardar</Button>
+                        </div>
+                    </div>
                     {/* <OpcionesBoton /> */}
                     <VistaPreviaImagenes imagenes={imagenes} data={carro} />
                 </div>
