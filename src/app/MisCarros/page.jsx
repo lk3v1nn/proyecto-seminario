@@ -17,7 +17,6 @@ async function cargarCarros() {
 
 async function CarrosPage() {
     const listaCarros = await cargarCarros();
-    console.log('listaCarros', listaCarros)
     return (
         <div className="flex items-center justify-center flex-wrap gap-4 p-4">
             {listaCarros.map((carro) => (

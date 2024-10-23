@@ -1,4 +1,17 @@
 .contendor-DetalleCarro{
     display: grid;
-    grid-template-columns: 80% 0 20%;
+    grid-template-columns: 80% 20%;
+}
+
+.contendor-DetalleCarro .contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    gap: 25px;
+}
+
+.contendor-DetalleCaro .contenido h1{
+    margin: 10px;
+    font-size: 22px;
 }

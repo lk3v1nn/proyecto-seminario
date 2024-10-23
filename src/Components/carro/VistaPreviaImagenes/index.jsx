@@ -3,7 +3,7 @@ import "./style.css";
 import { useEffect } from "react";
 import $ from "jquery";
 
-export default function VistaPreviaImagenes() {
+export default function VistaPreviaImagenes({ imagenes = [], data }) {
     useEffect(() => {
         // Verificar si jQuery ($) está disponible
         if (typeof $ !== "undefined") {
@@ -56,59 +56,20 @@ export default function VistaPreviaImagenes() {
             $(document).off("click", ".popup img");
             $(document).off("click", ".popup");
         };
-    }, []);
-
+    }, [imagenes, data]);
     return (
         <>
             <div class="gallery">
-            <figure>
-                    <img
-                        src="https://img.freepik.com/fotos-premium/concepto-camion-monstruo-jeep-todoterreno-fondo-pantalla-neon-bosque_758367-10060.jpg"
-                        alt=""
-                    />
-                    <figcaption>
-                        Honda fit RR (no gay) <small> del mencho</small>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img
-                        src="https://www.shutterstock.com/image-illustration/illustration-design-toy-car-600nw-2447193655.jpg"
-                        alt=""
-                    />
-                    <figcaption>
-                        Honda fit RR (no gay) <small> del mencho</small>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img
-                        src="https://i.ytimg.com/vi/-Jupg-ZAF2U/maxresdefault.jpg"
-                        alt=""
-                    />
-                    <figcaption>
-                        Honda fit RR (no gay) <small> del mencho</small>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img
-                        src="https://imgcdn.stablediffusionweb.com/2024/9/5/073459f8-ad8c-478b-8784-1a430078ce71.jpg"
-                        alt=""
-                    />
-                    <figcaption>
-                        Honda fit RR (no gay) <small> del mencho</small>
-                    </figcaption>
-                </figure>
-                <figure>
-                    <img
-                        src="https://img.freepik.com/premium-photo/neon-sign-that-says-f1-it_646510-370.jpg"
-                        alt=""
-                    />
-                    <figcaption>
-                        Honda fit RR (no gay) <small> del mencho</small>
-                    </figcaption>
-                </figure>
-
+                {imagenes.length > 0 &&
+                    imagenes?.map((imagen) => (
+                        <figure key={imagen.CodigoImagenCarro}>
+                            <img src={imagen.url} alt="" />
+                            <figcaption>
+                                {data?.Modelo} <small> {data?.Marca}</small>
+                            </figcaption>
+                        </figure>
+                    ))}
             </div>
-
             <svg>
                 <symbol id="close" viewBox="0 0 18 18">
                     <path

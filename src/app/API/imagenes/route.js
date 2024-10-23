@@ -48,8 +48,6 @@ export async function POST(request) {
                 console.log(error);
             });
 
-        console.log(uploadResult.public_id);
-
         const queryResponse = await conn.query(`INSERT INTO ImagenCarro set?     `, {
             url: uploadResult.url,
             CodigoCarro: data.get("CodigoCarro"),
