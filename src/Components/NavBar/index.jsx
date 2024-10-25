@@ -13,24 +13,42 @@ import {
 } from "@nextui-org/react";
 import { Busqueda } from "./Busqueda";
 import { Logo } from "./Logo";
-import  {useUsuarioStore}  from "@/store/usuario";
+import { useUsuarioStore } from "@/store/usuario";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
 export default function NavBar() {
     const { sesion, setSesion } = useUsuarioStore();
     const router = useRouter();
-    const yaCargo = useUsuarioStore.persist.hasHydrated();
+    const [isHydrated, setIsHydrated] = useState(false);
+
+    // Verificar la hidratación usando un efecto
+    useEffect(() => {
+        const checkHydration = () => {
+            if (useUsuarioStore.persist.hasHydrated()) {
+                setIsHydrated(true);
+            }
+        };
+
+        // Verificar la hidratación inicial
+        checkHydration();
+
+        // Escuchar cambios de hidratación
+        const unsubscribe = useUsuarioStore.persist.onHydrate(() => {
+            setIsHydrated(true);
+        });
+
+        return () => unsubscribe(); // Limpiar la suscripción
+    }, []);
 
     useEffect(() => {
-        if (!yaCargo) return;
+        if (!isHydrated) return;
 
         console.log("sesion", sesion);
         if (sesion === null) {
             router.push("/Login");
         }
-    }
-    , [sesion, yaCargo]);
- 
+    }, [sesion, isHydrated]);
 
     return (
         <Navbar isBordered>
