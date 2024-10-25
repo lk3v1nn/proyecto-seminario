@@ -1,13 +1,13 @@
-import mysql from 'serverless-mysql';
+import mysql from "serverless-mysql";
 
 export const conn = mysql({
     config: {
-        host     : 'mysql-seminario-umg-seminario.c.aivencloud.com',
-        database : 'proyect-seminario',
-        user     : 'avnadmin',
-        password : 'AVNS_s87M_LsjYCu67eSbbLY',
-        port     : 20852
-      }
+        host: process.env.DB_HOST,
+        database: process.env.DB_NAME,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        port: process.env.DB_PORT,
+    },
 
     //   config: {
     //     host     : process.env.ENDPOINT,
@@ -17,4 +17,3 @@ export const conn = mysql({
     //     port     : process.env.PORT
     //   }
 });
-

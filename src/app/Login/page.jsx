@@ -1,7 +1,7 @@
-import FormLogin from "@/Components/Login/FormLogin"
+import Ingresar from "@/Components/Login/Ingresar"
 
 export default function Login() {
     return (
-        <FormLogin/>
+        <Ingresar/>
     )
 }

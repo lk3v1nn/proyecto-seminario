@@ -1,13 +1,19 @@
+// store/usuario.js
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-export const useUsuarioStore = create((set) => ({
-    tema: "light",
-    token: "",
-    setTema: () => set(() => ({ tema: "Dark" })),
-    setToken: () =>
-        set(() => ({
-            token: fetch("https://api.github.com/users/lk3v1nn").then((res) =>
-                res.json()
-            ),
-        })),
-}));
+export const useUsuarioStore = create(
+  persist(
+    (set) => ({
+      tema: "light",
+      setTema: () =>
+        set((state) => ({ tema: state.tema === "light" ? "dark" : "light" })),
+      sesion: null,
+      setSesion: (data) => set(() => ({ sesion: data })),
+    }),
+    {
+      name: "usuario-storage", // Nombre de la clave en Local Storage
+      getStorage: () => localStorage, // Uso de Local Storage
+    }
+  )
+);

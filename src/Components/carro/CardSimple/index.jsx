@@ -16,7 +16,7 @@ export default function CardSimple({dataCarro}) {
                     <Image
                         alt="Card background"
                         className="object-cover rounded-xl"
-                        src="https://images.unsplash.com/flagged/photo-1553505192-acca7d4509be?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3"
+                        src={dataCarro.url}
                         width={270}
                     />
                 </CardBody>

@@ -3,6 +3,8 @@ import "./globals.css";
 import { Providers } from "./providers";
 import NavBar from "@/Components/NavBar"
 
+
+
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
     variable: "--font-geist-sans",
@@ -20,6 +22,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
     return (
         <html lang="es" className={`Ligth`}>
             <body className={`${geistSans.variable} ${geistMono.variable}`}>

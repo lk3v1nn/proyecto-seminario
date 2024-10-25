@@ -1,5 +1,4 @@
 import React from "react";
-import CarrosPage from "./Carros/page";
 
 function HomePage() {
     return (

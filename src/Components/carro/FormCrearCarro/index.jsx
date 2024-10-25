@@ -7,8 +7,10 @@ import { Button } from "@nextui-org/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import FormSubirImagenCarro from '../FormSubirImagenCarro'
+import {useUsuarioStore} from "@/store/usuario";
 
 export default function FormCrearCarro() {
+    const { sesion } = useUsuarioStore();
     const [carro, setCarro] = useState({
         Nombre: "",
         Marca: "",
@@ -32,7 +34,7 @@ export default function FormCrearCarro() {
         const carroActualizado = {
             ...carro,
             PrecioEstimado: 0,
-            Propietario: 1,
+            Propietario: sesion.CodigoUsuario,
             Disponible: 1,
         };
         setCarro(carroActualizado);
