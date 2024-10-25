@@ -28,14 +28,14 @@ export default function App() {
         const cellValue = user[columnKey];
 
         switch (columnKey) {
-            case "name":
+            case "FechaSolicitud":
                 return (
                     <User
-                        avatarProps={{ radius: "lg", src: user.avatar }}
-                        description={user.email}
+                        avatarProps={{ radius: "lg", src: user.url }}
+                        description={user.Nombre + " " + user.Apellido}
                         name={cellValue}
                     >
-                        {user.email}
+                        {user.Apellido}
                     </User>
                 );
             case "role":
@@ -53,11 +53,11 @@ export default function App() {
                 return (
                     <Chip
                         className="capitalize"
-                        color={statusColorMap[user.status]}
+                        color={statusColorMap[user.Aprobado == 1? "active" : "paused"]}
                         size="sm"
                         variant="flat"
                     >
-                        {cellValue}
+                        {user.Aprobado == 1? "Aprobado" : "Denegado o pendiente"}
                     </Chip>
                 );
             case "actions":
