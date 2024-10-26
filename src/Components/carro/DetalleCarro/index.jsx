@@ -15,22 +15,30 @@ export default function DetalleCarro({ codigoCarro }) {
     const [imagenes, setImagenes] = useState([]);
     const [carro, setCarro] = useState(null);
     const { sesion } = useUsuarioStore();
-    const [carroReservado, setCarroReservado] = useState();
-    const [carroPropio, setCarroPropio] = useState();
+    const [carroReservado, setCarroReservado] = useState([]);
+    const [carroPropio, setCarroPropio] = useState([]);
 
     // Valida si el caro ya se encuentra reservado o es propio
     useEffect(() => {
         const consultar = async () => {
             const estaReservado = `SELECT CodigoReserva FROM Reserva WHERE CodigoCarro = ${codigoCarro} AND CodigoUsuarioSolicita = ${sesion.CodigoUsuario};`;
+            console.log('estaReservado');
+            console.log(estaReservado);
             const respuesta1 = await realizarSelect(estaReservado);
             setCarroReservado(respuesta1);
+            console.log(respuesta1);
+            console.log(respuesta1.length == 0);
 
-            const esPropio = `SELECT * FROM CARRO WHERE CodigoCarro = ${codigoCarro} AND Propietario != ${sesion.CodigoUsuario};`;
+            const esPropio = `SELECT * FROM CARRO WHERE CodigoCarro = ${codigoCarro} AND Propietario = ${sesion.CodigoUsuario};`;
+            console.log('esPropio');
+            console.log(esPropio);
             const respuesta2 = await realizarSelect(esPropio);
             setCarroPropio(respuesta2);
+            console.log(respuesta2);
+            console.log(respuesta2.length == 0);
         };
-        consultar();
-    }, []);
+        sesion?.CodigoUsuario && consultar();
+    }, [sesion]);
 
     // Solicitud datos del carro
     useEffect(() => {
@@ -61,6 +69,7 @@ export default function DetalleCarro({ codigoCarro }) {
             null,
             null
         );
+        setCarroReservado(['reservado']);
     };
 
     // const reservarCarro = async () => {
@@ -115,9 +124,9 @@ export default function DetalleCarro({ codigoCarro }) {
                 <div className="contenido">
                     <div className="flex gap-8">
                         <DatosCarro carro={carro} />
-                        {carroPropio && (
+                        {carroPropio.length == 0 && (
                             <div className="flex flex-col justify-evenly">
-                                {!carroReservado ? (
+                                {carroReservado.length == 0 ? (
                                     <Button
                                         color="primary"
                                         size="md"

@@ -87,7 +87,7 @@ export default function Register() {
             <Input
                 type="email"
                 label="Correo Electrónico"
-                placeholder="you@example.com"
+                placeholder="nombre@ejemplo.com"
                 labelPlacement="outside"
                 name="Correo"
                 value={formData.Correo}

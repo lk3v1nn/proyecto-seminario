@@ -18,5 +18,6 @@ export default async function realizarSelect(sql) {
         return result;
     } catch (error) {
         console.error("Error al realizar la consulta:", error.message);
+        return []
     }
 }

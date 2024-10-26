@@ -15,26 +15,15 @@ export async function POST(request) {
     }
 
     // Ejecutar la consulta de solo lectura
-    const [result] = await conn.query(consulta);
+    const result = await conn.query(consulta);
 
-    // Verificar si la respuesta es un array y está vacío
-    if (Array.isArray(result) && result.length === 0) {
-      return NextResponse.json(
-        { message: "No se encontraron registros." },
-        { status: 404 }
-      );
+    // Verificar si la respuesta es un array y devolver un array vacío si no hay resultados
+    if (Array.isArray(result[0])) {
+      return NextResponse.json(result[0].length > 0 ? result[0] : []);
     }
 
-    // Verificar si la consulta resultó en un error o un resultado inesperado
-    if (!result) {
-      return NextResponse.json(
-        { message: "Error en la consulta o resultados no válidos." },
-        { status: 500 }
-      );
-    }
-
-    // Retornar los resultados de la consulta
-    return NextResponse.json(result);
+    // Retornar un array vacío si el resultado no es válido
+    return NextResponse.json([]);
 
   } catch (error) {
     console.error("Error al ejecutar la consulta:", error);

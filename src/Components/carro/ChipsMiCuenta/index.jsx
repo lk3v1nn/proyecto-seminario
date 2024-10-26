@@ -20,7 +20,7 @@ export default function App() {
                     content: "drop-shadow shadow-black text-white",
                 }}
             >
-                <Link href="/Reservaciones"> Solicitudes de Mis Carros </Link>
+                <Link href="/Solicitudes"> Solicitudes de Mis Carros </Link>
             </Chip>
         </div>
     );
