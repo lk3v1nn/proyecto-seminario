@@ -52,6 +52,7 @@ export default function NavBar() {
     }, [sesion, isHydrated]);
 
     const buscarCarro = () => {
+        if (valorBuscado === "") return;
         router.push(`/Busqueda/${valorBuscado}`);
     }
 
@@ -97,6 +98,7 @@ export default function NavBar() {
                     startContent={<><Busqueda size={18} /> <button onClick={buscarCarro}>Buscar</button></>}
                     type="search"
                     onChange={(e) => setValorBuscado(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && buscarCarro()}
                 />
 
                 <Popover placement="bottom-end">
