@@ -7,13 +7,8 @@ export const conn = mysql({
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         port: process.env.DB_PORT,
+        ssl: {
+            rejectUnauthorized: false, // para ignorar la verificación de certificados
+        },
     },
-
-    //   config: {
-    //     host     : process.env.ENDPOINT,
-    //     database : process.env.DATABASE,
-    //     user     : process.env.USERNAME,
-    //     password : process.env.PASSWORD,
-    //     port     : process.env.PORT
-    //   }
 });
