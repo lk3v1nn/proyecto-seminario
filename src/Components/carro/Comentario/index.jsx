@@ -10,7 +10,7 @@ export default function Comentario() {
         <div className="flex gap-5">
           <Avatar isBordered radius="full" size="md" src="https://i.imgur.com/lGlAzbN.jpeg" />
           <div className="flex flex-col gap-1 items-start justify-center">
-            <h4 className="text-small font-semibold leading-none text-default-600">El mencho</h4>
+            <h4 className="text-small font-semibold leading-none text-default-600">mencho velasquez</h4>
           </div>
         </div>
         <Button

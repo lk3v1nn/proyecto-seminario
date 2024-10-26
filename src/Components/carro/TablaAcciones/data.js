@@ -11,7 +11,7 @@ const columns = [
       {name: "Modelo", uid: "Modelo"},
       {name: "Año", uid: "Anio"},
       {name: "Precio", uid: "Precio"},
-      {name: "Aprobado", uid: "status"},
+      {name: "Disponibilidad", uid: "status"},
       {name: "Accion", uid: "actions"},
     ];
   

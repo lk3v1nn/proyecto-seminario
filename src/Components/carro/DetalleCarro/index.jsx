@@ -62,7 +62,7 @@ export default function DetalleCarro({ codigoCarro }) {
             null,
             null
         );
-        setCarroReservado(['reservado']);
+        setCarroReservado(["reservado"]);
     };
 
     // const reservarCarro = async () => {
@@ -150,6 +150,11 @@ export default function DetalleCarro({ codigoCarro }) {
                     </div>
                     {/* <OpcionesBoton /> */}
                     <VistaPreviaImagenes imagenes={imagenes} data={carro} />
+                    <div className="flex gap-2 px-8 mt-4 justify-center flex-wrap">
+                        <Comentario />
+                        <Comentario />
+                        <Comentario />
+                    </div>
                 </div>
                 <BannerRecomendaciones />
             </div>
@@ -157,12 +162,6 @@ export default function DetalleCarro({ codigoCarro }) {
             <VistaPreviaImagenes />
             <BannerRecomendaciones />
             <CardUsuario />
-
-            <div className="flex gap-2 px-8 mt-4 justify-center flex-wrap">
-                <Comentario />
-                <Comentario />
-                <Comentario />
-            </div>
         </>
     );
 }

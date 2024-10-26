@@ -17,6 +17,7 @@ import { DeleteIcon } from "./DeleteIcon";
 import { EyeIcon } from "./EyeIcon";
 import { columns, users } from "./data";
 import axios from "axios";
+import Link from "next/link";
 
 const statusColorMap = {
     active: "success",
@@ -36,14 +37,16 @@ export default function App({ users }) {
                     let consulta = `UPDATE Reserva SET Aprobado = ${accion} WHERE CodigoCarro = ${codigoCarro}; `;
                     await axios.post(url, { consulta });
                     console.log("consulta", consulta);
-                    let consulta2
+                    let consulta2;
                     if (accion == 1) {
                         consulta2 = `UPDATE CARRO SET Rentado = 1 WHERE CodigoCarro = ${codigoCarro};`;
                     } else if (accion == 0) {
                         consulta2 = `UPDATE CARRO SET Rentado = 0 WHERE CodigoCarro = ${codigoCarro};`;
                     }
                     console.log("consulta2", consulta2);
-                    const response = await axios.post(url, { consulta: consulta2 });
+                    const response = await axios.post(url, {
+                        consulta: consulta2,
+                    });
                     if (response.data) {
                         // Recargar la página después de la respuesta exitosa
                         window.location.reload();
@@ -95,10 +98,10 @@ export default function App({ users }) {
                         variant="flat"
                     >
                         {user.Aprobado == 1
-                            ? "Aprobado"
+                            ? "Rentado"
                             : user.Aprobado == 0
-                            ? "Denegado"
-                            : "Pendiente"}
+                            ? "Disponible"
+                            : "Disponible"}
                     </Chip>
                 );
             case "actions":
@@ -121,9 +124,11 @@ export default function App({ users }) {
                             </span>
                         </Tooltip>
                         <Tooltip content="Detalles">
-                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                                <EyeIcon />
-                            </span>
+                            <Link href={`/Carros/${user.id}`} >
+                                <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                                    <EyeIcon />
+                                </span>
+                            </Link>
                         </Tooltip>
                     </div>
                 );

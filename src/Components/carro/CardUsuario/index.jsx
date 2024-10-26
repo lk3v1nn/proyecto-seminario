@@ -7,7 +7,7 @@ export default function CardUsuario({className, children}) {
             <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-2">
             <CardHeader className="absolute z-10 top-1 flex-col items-start">
                 <p className="text-tiny text-white/60 uppercase font-bold">Usuario</p>
-                <h4 className="text-black font-medium text-2xl">mencho</h4>
+                <h4 className="text-black font-medium text-2xl">admin</h4>
             </CardHeader>
             <Image
                 removeWrapper
