@@ -1,31 +1,41 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import CardNoDisponible from "../../Components/carro/CardNoDisponible";
-import CardSimple from "../../Components/carro/CardSimple";
+import CardNoDisponible from "@/Components/carro/CardNoDisponible";
+import CardSimple from "@/Components/carro/CardSimple";
 import Banner from "@/Components/carro/BannerCategorias";
-// import { conn } from "@/libs/mysql";
+import { useParams } from "next/navigation";
+import axios from "axios";
 
  function CarrosPage() {
     const [listaCarros, setListaCarros] = useState([]);
+    const [listaCarros2, setListaCarros2] = useState([]);
+  const { nombre } = useParams();
 
     useEffect(() => {
-        const fetchCarros = async () => {
+        async function fetchData() {
             try {
-                const response = await fetch("/API/cars");
-                if (!response.ok) {
-                    throw new Error("Error al cargar los carros");
-                }
-                const data = await response.json();
-                setListaCarros(data);
-                console.log('carros', data);
+                const url = "/API/sql/query"; // Reemplaza con tu ruta real
+                const consulta = `SELECT c.*, MIN(i.url) AS url
+                                FROM CARRO c
+                                JOIN ImagenCarro i ON c.CodigoCarro = i.CodigoCarro
+                                WHERE c.disponible = 1 
+                                AND Nombre like '%${nombre}%' OR 
+                                Marca like '%${nombre}%' Or 
+                                Modelo  like '%${nombre}%' Or 
+                                Descripcion like '%${nombre}%'
+                                GROUP BY c.CodigoCarro
+                                ORDER BY c.rentado ASC;`;
+                const response = await axios.post(url, { consulta });
+                setListaCarros(response.data);
+                console.log('setListaCarros2',response.data);
+                return response.data;
             } catch (error) {
-                console.error("Error al cargar los carros:", error);
-            } finally {
+                console.error("Error al hacer la solicitud:", error);
+                return null;
             }
-        };
-
-        fetchCarros();
-    }, []);
+        }
+        fetchData();
+    }, [nombre]);
 
 
     return (

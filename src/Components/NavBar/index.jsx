@@ -21,6 +21,7 @@ export default function NavBar() {
     const { sesion, setSesion } = useUsuarioStore();
     const router = useRouter();
     const [isHydrated, setIsHydrated] = useState(false);
+    const [valorBuscado, setValorBuscado] = useState("");
 
     // Verificar la hidratación usando un efecto
     useEffect(() => {
@@ -49,6 +50,10 @@ export default function NavBar() {
             router.push("/Login");
         }
     }, [sesion, isHydrated]);
+
+    const buscarCarro = () => {
+        router.push(`/Busqueda/${valorBuscado}`);
+    }
 
     return (
         <Navbar isBordered>
@@ -89,8 +94,9 @@ export default function NavBar() {
                     }}
                     placeholder="Escribe tu búsqueda."
                     size="sm"
-                    startContent={<Busqueda size={18} />}
+                    startContent={<><Busqueda size={18} /> <button onClick={buscarCarro}>Buscar</button></>}
                     type="search"
+                    onChange={(e) => setValorBuscado(e.target.value)}
                 />
 
                 <Popover placement="bottom-end">
