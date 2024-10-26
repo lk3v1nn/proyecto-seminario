@@ -8,7 +8,20 @@ export const conn = mysql({
         password: process.env.DB_PASSWORD,
         port: process.env.DB_PORT,
         ssl: {
-            rejectUnauthorized: false, // para ignorar la verificación de certificados
+            ca: process.env.DB_CA_CERT,
+            rejectUnauthorized: false,
         },
     },
 });
+
+export async function query(sql, values) {
+    try {
+        const results = await conn.query(sql, values);
+        return results;
+    } catch (error) {
+        console.error("Error en la consulta:", error);
+        throw error;
+    } finally {
+        await conn.end();  // Cierra la conexión correctamente
+    }
+}
