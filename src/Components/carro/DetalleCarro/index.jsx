@@ -22,20 +22,12 @@ export default function DetalleCarro({ codigoCarro }) {
     useEffect(() => {
         const consultar = async () => {
             const estaReservado = `SELECT CodigoReserva FROM Reserva WHERE CodigoCarro = ${codigoCarro} AND CodigoUsuarioSolicita = ${sesion.CodigoUsuario};`;
-            console.log('estaReservado');
-            console.log(estaReservado);
             const respuesta1 = await realizarSelect(estaReservado);
             setCarroReservado(respuesta1);
-            console.log(respuesta1);
-            console.log(respuesta1.length == 0);
 
             const esPropio = `SELECT * FROM CARRO WHERE CodigoCarro = ${codigoCarro} AND Propietario = ${sesion.CodigoUsuario};`;
-            console.log('esPropio');
-            console.log(esPropio);
             const respuesta2 = await realizarSelect(esPropio);
             setCarroPropio(respuesta2);
-            console.log(respuesta2);
-            console.log(respuesta2.length == 0);
         };
         sesion?.CodigoUsuario && consultar();
     }, [sesion]);
@@ -46,6 +38,7 @@ export default function DetalleCarro({ codigoCarro }) {
             const response = await fetch(`/API/cars/${codigoCarro}`);
             const data = await response.json();
             setCarro(data[0]);
+            console.log("Carro:", data[0]);
         }
 
         fetchCarro();

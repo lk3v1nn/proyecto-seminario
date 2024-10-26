@@ -28,34 +28,6 @@ export default function App({ users }) {
     const renderCell = React.useCallback((user, columnKey) => {
         const cellValue = user[columnKey];
 
-        const accionReserva = (accion, codigoCarro) => {
-            console.log("car", codigoCarro);
-            async function fetchData() {
-                try {
-                    const url = "/API/sql/query";
-                    let consulta = `UPDATE Reserva SET Aprobado = ${accion} WHERE CodigoCarro = ${codigoCarro}; `;
-                    await axios.post(url, { consulta });
-                    console.log("consulta", consulta);
-                    let consulta2
-                    if (accion == 1) {
-                        consulta2 = `UPDATE CARRO SET Rentado = 1 WHERE CodigoCarro = ${codigoCarro};`;
-                    } else if (accion == 0) {
-                        consulta2 = `UPDATE CARRO SET Rentado = 0 WHERE CodigoCarro = ${codigoCarro};`;
-                    }
-                    console.log("consulta2", consulta2);
-                    const response = await axios.post(url, { consulta: consulta2 });
-                    if (response.data) {
-                        // Recargar la página después de la respuesta exitosa
-                        window.location.reload();
-                    }
-                } catch (error) {
-                    console.error("Error al hacer la solicitud:", error);
-                    return null;
-                }
-            }
-            fetchData();
-        };
-
         switch (columnKey) {
             case "FechaSolicitud":
                 return (
@@ -101,22 +73,16 @@ export default function App({ users }) {
                             : "Pendiente"}
                     </Chip>
                 );
-            case "actions":
+      
                 return (
                     <div className="relative flex items-center gap-2">
                         <Tooltip color="success" content="Aprobar">
-                            <span
-                                className="text-lg text-default-400 cursor-pointer active:opacity-50"
-                                onClick={() => accionReserva(1, user.id)}
-                            >
+                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                                 <EditIcon />
                             </span>
                         </Tooltip>
                         <Tooltip color="danger" content="Denegar">
-                            <span
-                                className="text-lg text-danger cursor-pointer active:opacity-50"
-                                onClick={() => accionReserva(0, user.id)}
-                            >
+                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
                                 <DeleteIcon />
                             </span>
                         </Tooltip>
