@@ -45,7 +45,7 @@ export default function NavBar() {
         if (!isHydrated) return;
 
         console.log("sesion", sesion);
-        if (sesion === null) {
+        if (sesion === null && router.pathname !== "/Registrarse") {
             router.push("/Login");
         }
     }, [sesion, isHydrated]);
