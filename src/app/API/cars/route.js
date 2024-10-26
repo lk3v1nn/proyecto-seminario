@@ -1,14 +1,34 @@
 const { NextResponse } = require("next/server");
 import { conn } from "@/libs/mysql";
 
+// export async function GET() {
+//     try {
+//         const QueryRespnse = await conn.query("SELECT * FROM CARRO");
+//         return NextResponse.json(QueryRespnse);    
+//     } catch (error) {
+//         return NextResponse.json({message: error.message}, { status: 500 });
+//     }
+    
+// }
+
+
 export async function GET() {
     try {
-        const QueryRespnse = await conn.query("SELECT * FROM CARRO");
-        return NextResponse.json(QueryRespnse);    
+        const queryResponse = await conn.query(`
+            SELECT c.*, MIN(i.url) AS url
+            FROM CARRO c
+            JOIN ImagenCarro i ON c.CodigoCarro = i.CodigoCarro
+            WHERE c.disponible = 1 
+            GROUP BY c.CodigoCarro
+            ORDER BY c.rentado ASC;
+        `);
+
+        await conn.end(); // Cierra la conexión después de la consulta
+        return NextResponse.json(queryResponse);
     } catch (error) {
-        return NextResponse.json({message: error.message}, { status: 500 });
+        console.error("Error al cargar los carros:", error);
+        return NextResponse.json({ message: error.message }, { status: 500 });
     }
-    
 }
 
 export async function POST(request) {

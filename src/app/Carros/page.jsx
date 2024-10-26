@@ -1,29 +1,32 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import CardNoDisponible from "../../Components/carro/CardNoDisponible";
 import CardSimple from "../../Components/carro/CardSimple";
 import Banner from "@/Components/carro/BannerCategorias";
-import { query  } from "@/libs/mysql";
+// import { conn } from "@/libs/mysql";
 
-async function cargarCarros() {
-    try {
-        const carros = await query(`SELECT c.*, MIN(i.url) AS url 
-                                        FROM CARRO c 
-                                        JOIN ImagenCarro i ON c.CodigoCarro = i.CodigoCarro
-                                        WHERE c.disponible = 1 
-                                        GROUP BY c.CodigoCarro
-                                        ORDER BY c.rentado ASC;`);
+ function CarrosPage() {
+    const [listaCarros, setListaCarros] = useState([]);
 
+    useEffect(() => {
+        const fetchCarros = async () => {
+            try {
+                const response = await fetch("/API/cars");
+                if (!response.ok) {
+                    throw new Error("Error al cargar los carros");
+                }
+                const data = await response.json();
+                setListaCarros(data);
+                console.log('carros', data);
+            } catch (error) {
+                console.error("Error al cargar los carros:", error);
+            } finally {
+            }
+        };
 
-        return carros;
-    } catch (error) {
-        console.error("Error al cargar los carros:", error);
-        await conn.end();
-        throw error;
-    }
-}
+        fetchCarros();
+    }, []);
 
-async function CarrosPage() {
-    const listaCarros = await cargarCarros();
 
     return (
         <div className="flex items-center justify-center flex-wrap gap-4 p-4">
